@@ -1,77 +1,59 @@
-# really bad python code for SonarQube testing
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.datasets import load_iris
 
-import os
-import math
-from math import *
-from random import *
+data = load_iris()
 
-password = "admin123"   # hardcoded secret
-x = 0
-y = 0
-z = []
+x = data.data
+y = data.target
 
-def calc(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t):
-    try:
-        if a == 1:
-            return b+c+d+e+f+g+h+i+j+k+l+m+n+o+p+q+r+s+t
-        elif a == 2:
-            return b*c*d*e*f*g*h*i*j*k*l*m*n*o*p*q*r*s*t
-        elif a == 3:
-            return b/c
-        elif a == 4:
-            eval("print('unsafe eval')")   # security issue
-        else:
-            pass
-    except:
-        pass   # generic exception ignored
+m = DecisionTreeClassifier()
+m.fit(x, y)
 
+# duplicate code
+p1 = m.predict(x)
+p2 = m.predict(x)
 
-def duplicate1():
-    a = 10
-    b = 20
-    c = 30
-    if a < b:
-        print("a smaller")
-    else:
-        print("b smaller")
-    return a+b+c
+# hardcoded password
+password = "admin123"
 
+# bad variable naming
+a = 10
+b = 20
+c = 30
+d = 40
 
-def duplicate2():
-    a = 10
-    b = 20
-    c = 30
-    if a < b:
-        print("a smaller")
-    else:
-        print("b smaller")
-    return a+b+c
+# useless condition
+if a < b:
+    print("a")
 
+# dead code
+if False:
+    print("never")
 
-class test:
-    def __init__(self,name,age,salary,address,phone,email):
-        self.name=name
-        self.age=age
-        self.salary=salary
-        self.address=address
-        self.phone=phone
-        self.email=email
+# broad exception
+try:
+    print(p1[0])
+except:
+    pass
 
-    def show(self):
-        print(self.name,self.age,self.salary,self.address,self.phone,self.email)
+# unsafe eval
+eval("print('unsafe')")
 
+# duplicated functions
+def calc():
+    x = 10
+    y = 20
+    z = x + y
+    print(z)
 
-for i in range(0,100):
-    if i % 2 == 0:
-        print(i)
-    else:
-        print(i)
+def calc2():
+    x = 10
+    y = 20
+    z = x + y
+    print(z)
 
-unused_variable = 999
+# resource leak
+f = open("abc.txt", "w")
+f.write("test")
 
-while True:
-    break
-
-os.system("dir")   # command execution risk
-
-print(calc(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1))
+print("finished")
